@@ -1,0 +1,57 @@
+name: drift-watch
+
+on:
+  schedule:
+    - cron: '0 1 * * *'   # 每天 01:00 UTC（北京时间 09:00）
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch sources
+        run: python3 fetch.py
+
+      - name: Diff and report
+        run: python3 diff.py
+
+      - name: Check for drift
+        id: check
+        run: |
+          HAS_DRIFT=$(python3 -c "import json;d=json.load(open('drift-result.json'));print('true' if d['changed']+d['new']>0 else 'false')")
+          echo "has_drift=$HAS_DRIFT" >> "$GITHUB_OUTPUT"
+
+      - name: Create drift issue
+        if: steps.check.outputs.has_drift == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('drift-report.md', 'utf8');
+            const title = 'PSP drift: ' + new Date().toISOString().slice(0, 10);
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body
+            });
+
+      - name: Update baseline
+        if: steps.check.outputs.has_drift == 'true'
+        run: |
+          cp snapshot.json baseline.json
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add baseline.json
+          git commit -m "drift-watch: update baseline" || echo "no change to commit"
+          git push

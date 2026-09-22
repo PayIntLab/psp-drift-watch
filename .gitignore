@@ -1,4 +1,5 @@
 snapshot.json
 drift-report.md
+drift-result.json
 __pycache__/
 *.pyc

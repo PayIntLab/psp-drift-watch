@@ -105,6 +105,11 @@ def main():
     out = os.path.join(ROOT, "drift-report.md")
     with open(out, "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
+
+    result = {"changed": len(changed), "new": len(new), "failed": len(failed), "unchanged": unchanged}
+    with open(os.path.join(ROOT, "drift-result.json"), "w", encoding="utf-8") as f:
+        json.dump(result, f)
+
     print(f"wrote {out}: {len(changed)} changed / {len(new)} new / {len(failed)} failed / {unchanged} unchanged")
 
 

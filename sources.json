@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "paypal-orders-v1-v2-migration",
+      "platform": "PayPal",
+      "name": "Orders v1 -> v2 migration guide",
+      "url": "https://developer.paypal.com/api/rest/integration/orders-api/v1-v2-migration",
+      "kind": "migration",
+      "signal": "eol"
+    },
+    {
+      "id": "paypal-ipn-deprecation",
+      "platform": "PayPal",
+      "name": "IPN deprecation analysis (dev.to)",
+      "url": "https://dev.to/flarecanary/paypal-ipn-is-deprecated-the-ipn-webhooks-migration-drops-payments-in-four-silent-ways-1afp",
+      "kind": "analysis",
+      "signal": "eol"
+    },
+    {
+      "id": "stripe-billed-until",
+      "platform": "Stripe",
+      "name": "billed_until no longer returned by default",
+      "url": "https://docs.stripe.com/changelog/dahlia/2026-05-27/subscription-item-billed-until-includable",
+      "kind": "changelog",
+      "signal": "field_default"
+    },
+    {
+      "id": "stripe-node-21-release",
+      "platform": "Stripe",
+      "name": "stripe-node v21 release notes",
+      "url": "https://newreleases.io/project/npm/stripe/release/21.0.0",
+      "kind": "sdk_release",
+      "signal": "sdk_version"
+    },
+    {
+      "id": "stripe-node-pr-2616",
+      "platform": "Stripe",
+      "name": "stripe-node PR #2616 (webhook parse methods)",
+      "url": "https://github.com/stripe/stripe-node/pull/2616",
+      "kind": "sdk_release",
+      "signal": "sdk_version"
+    },
+    {
+      "id": "adyen-checkout-v72",
+      "platform": "Adyen",
+      "name": "Checkout v72 upgrade",
+      "url": "https://www.adyen.com/the-latest/upgrade-to-checkout-v72-for-more-reliable-payment-flows",
+      "kind": "api_version",
+      "signal": "api_version"
+    },
+    {
+      "id": "stripe-changelog-index",
+      "platform": "Stripe",
+      "name": "Stripe changelog (index)",
+      "url": "https://docs.stripe.com/changelog",
+      "kind": "changelog",
+      "signal": "field_default"
+    },
+    {
+      "id": "paypal-release-notes",
+      "platform": "PayPal",
+      "name": "PayPal Orders API release notes",
+      "url": "https://developer.paypal.com/api/rest/release-notes/release-notes-orders.md",
+      "kind": "changelog",
+      "signal": "field_default"
+    },
+    {
+      "id": "adyen-release-notes",
+      "platform": "Adyen",
+      "name": "Adyen release notes",
+      "url": "https://docs.adyen.com/release-notes/",
+      "kind": "changelog",
+      "signal": "api_version"
+    }
+  ]
+}

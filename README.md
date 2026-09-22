@@ -58,7 +58,12 @@ cp snapshot.json baseline.json   # 固化当前状态为基线
 
 ## 扩展监测源
 
-在 `sources.json` 里加一条即可：`id`、`platform`、`name`、`url`、`kind`
-（changelog / migration / sdk_release / api_version / analysis）、`signal`
-（eol / field_default / sdk_version / api_version）。fetch 会用整页内容做指纹，
-任何内容变化都会在下次 diff 里被标记出来供人工/AI 判断。
+在 `sources.json` 里加一条即可。`kind` 决定怎么抓稳定信号：
+
+- `github_commits`：看某个 GitHub 仓库最新 commit（`repo`），适合 OpenAPI spec 仓库。
+- `github_releases`：看某个仓库最新 release 的 tag（`repo`），适合 SDK 版本。
+- `devto_api`：看某篇 dev.to 文章的编辑时间（`username` + `slug`）。
+- `http`：普通 HTTP（`url`），优先用 ETag，退化为内容哈希（只适合静态页/原始 .md）。
+
+每条都要 `id`、`platform`、`name`、`kind`、`signal`。用稳定信号做指纹，
+任何真实变化（新 commit / 新 release / 编辑）都会在下次 diff 里被标记出来。

@@ -9,7 +9,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 
 SIGNAL_LABEL = {
     "eol": "EOL / 迁移",
-    "field_default": "字段默认值变化",
+    "field_default": "字段 / schema 变化",
     "sdk_version": "SDK 大版本 / pinned API",
     "api_version": "API 版本变更",
 }
@@ -24,7 +24,7 @@ def load(name):
 
 
 def fingerprint(e):
-    return (e.get("sha256"), e.get("etag"), e.get("last_modified"), e.get("status"))
+    return (e.get("ok"), e.get("fingerprint"))
 
 
 def main():
@@ -35,7 +35,6 @@ def main():
         sys.exit(1)
 
     changed, new, failed, unchanged = [], [], [], 0
-
     for sid, cur in snap["sources"].items():
         if not cur.get("ok"):
             failed.append((sid, cur))
@@ -65,23 +64,18 @@ def main():
             lines.append(
                 f"- **{cur['platform']} / {cur['name']}**（信号：{SIGNAL_LABEL.get(cur['signal'], cur['signal'])}）"
             )
-            lines.append(f"  - {cur['url']}")
-            lines.append(
-                f"  - 指纹变化：{prev.get('sha256','-')[:12]} → {cur.get('sha256','-')[:12]}"
-            )
-            if prev.get("last_modified") != cur.get("last_modified"):
-                lines.append(f"  - last-modified：{prev.get('last_modified')} → {cur.get('last_modified')}")
+            lines.append(f"  - {prev.get('detail', '-')}  →  {cur.get('detail', '-')}")
             lines.append("")
 
     if new:
         lines.append("## 新增的源")
         lines.append("")
         for sid, cur in new:
-            lines.append(f"- {cur['platform']} / {cur['name']} — {cur['url']}")
+            lines.append(f"- {cur['platform']} / {cur['name']} — {cur.get('detail', '')}")
         lines.append("")
 
     if failed:
-        lines.append("## 抓取失败的源（网络/反爬/改版）")
+        lines.append("## 抓取失败的源")
         lines.append("")
         for sid, cur in failed:
             lines.append(f"- {cur['platform']} / {cur['name']} — {cur.get('error')}")
@@ -91,7 +85,7 @@ def main():
     lines.append("")
     lines.append("有变化时按三条信号判断要不要动手：")
     lines.append("1. EOL / 迁移：有截止日，但迁移窗口最容易静默失败。")
-    lines.append("2. 字段默认值变化：不报错、只是突然没值。")
+    lines.append("2. 字段 / schema 变化：不报错、只是突然没值或字段对不上。")
     lines.append("3. SDK 大版本 + pinned API：升级动作本身会掩盖风险。")
     lines.append("")
     lines.append("## 升级前回归清单")
@@ -106,11 +100,18 @@ def main():
     with open(out, "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
 
-    result = {"changed": len(changed), "new": len(new), "failed": len(failed), "unchanged": unchanged}
+    result = {
+        "changed": len(changed),
+        "new": len(new),
+        "failed": len(failed),
+        "unchanged": unchanged,
+    }
     with open(os.path.join(ROOT, "drift-result.json"), "w", encoding="utf-8") as f:
         json.dump(result, f)
 
-    print(f"wrote {out}: {len(changed)} changed / {len(new)} new / {len(failed)} failed / {unchanged} unchanged")
+    print(
+        f"wrote {out}: {len(changed)} changed / {len(new)} new / {len(failed)} failed / {unchanged} unchanged"
+    )
 
 
 if __name__ == "__main__":

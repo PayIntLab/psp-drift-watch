@@ -1,131 +1,50 @@
 {
-  "generated_at": "2026-09-22T03:56:50.129103Z",
+  "generated_at": "2026-09-22T06:12:31.152637Z",
   "sources": {
-    "paypal-orders-v1-v2-migration": {
-      "platform": "PayPal",
-      "name": "Orders v1 -> v2 migration guide",
-      "url": "https://developer.paypal.com/api/rest/integration/orders-api/v1-v2-migration",
-      "kind": "migration",
-      "signal": "eol",
-      "ok": true,
-      "status": 200,
-      "etag": null,
-      "last_modified": null,
-      "title": "Orders API v1 → v2 integration upgrade guide | PayPal Developer",
-      "sha256": "fb4d95566a18f7167cfb9ae7ab0e7711d99aa880d1838945d52f8ce124c635a6",
-      "size": 753224
-    },
-    "paypal-ipn-deprecation": {
-      "platform": "PayPal",
-      "name": "IPN deprecation analysis (dev.to)",
-      "url": "https://dev.to/flarecanary/paypal-ipn-is-deprecated-the-ipn-webhooks-migration-drops-payments-in-four-silent-ways-1afp",
-      "kind": "analysis",
-      "signal": "eol",
-      "ok": true,
-      "status": 200,
-      "etag": "W/\"e2edf198c1485d445a079f0110e4a1e4\"",
-      "last_modified": null,
-      "title": "PayPal IPN is deprecated — the IPN Webhooks migration drops payments in four silent ways - DEV Community",
-      "sha256": "cee091e93d5d891d684b8d76236d98db0bde01795a47bcae8fa4fa9baa13bdab",
-      "size": 129038
-    },
-    "stripe-billed-until": {
+    "stripe-openapi": {
       "platform": "Stripe",
-      "name": "billed_until no longer returned by default",
-      "url": "https://docs.stripe.com/changelog/dahlia/2026-05-27/subscription-item-billed-until-includable",
-      "kind": "changelog",
+      "name": "OpenAPI spec (schema)",
+      "kind": "github_commits",
       "signal": "field_default",
       "ok": true,
-      "status": 200,
-      "etag": null,
-      "last_modified": null,
-      "title": "Billed until property on subscription items is no longer included in responses by default | Stripe Documentation",
-      "sha256": "b5119035840e5c90682bd4232fff4f5211478659590994ec51f912c3a8dda86f",
-      "size": 675094
+      "fingerprint": "a8ab5208e7591c37673f00a42c441ac4d7456a1c",
+      "detail": "a8ab5208 2026-09-21T21:38:43Z | Update upcoming changes"
     },
-    "stripe-node-21-release": {
+    "stripe-node-release": {
       "platform": "Stripe",
-      "name": "stripe-node v21 release notes",
-      "url": "https://newreleases.io/project/npm/stripe/release/21.0.0",
-      "kind": "sdk_release",
+      "name": "stripe-node SDK release",
+      "kind": "github_releases",
       "signal": "sdk_version",
       "ok": true,
-      "status": 200,
-      "etag": null,
-      "last_modified": null,
-      "title": "stripe 21.0.0 on Node.js NPM",
-      "sha256": "804274f6629c06a6d676393c99274e2020d582bcd2faa162c872fca59ed73c64",
-      "size": 72467
+      "fingerprint": "v22.6.2",
+      "detail": "v22.6.2 (2026-09-09T21:10:28Z)"
     },
-    "stripe-node-pr-2616": {
-      "platform": "Stripe",
-      "name": "stripe-node PR #2616 (webhook parse methods)",
-      "url": "https://github.com/stripe/stripe-node/pull/2616",
-      "kind": "sdk_release",
-      "signal": "sdk_version",
-      "ok": true,
-      "status": 200,
-      "etag": null,
-      "last_modified": null,
-      "title": "⚠️ Throw an error when using the wrong webhook parsing method by xavdid-stripe · Pull Request #2616 · stripe/stripe-node · GitHub",
-      "sha256": "39509f44e2c72b6eee242e605ff2bbfea5ae3031cf452bf079ee10167110c42b",
-      "size": 316813
-    },
-    "adyen-checkout-v72": {
-      "platform": "Adyen",
-      "name": "Checkout v72 upgrade",
-      "url": "https://www.adyen.com/the-latest/upgrade-to-checkout-v72-for-more-reliable-payment-flows",
-      "kind": "api_version",
-      "signal": "api_version",
-      "ok": true,
-      "status": 200,
-      "etag": null,
-      "last_modified": null,
-      "title": "Upgrade to Checkout v72 for more reliable payment flows - Adyen",
-      "sha256": "f40585728f361646aef80b8ef9eccd628dfeb3d54c28569491f4d4658e0f1d5d",
-      "size": 1077758
-    },
-    "stripe-changelog-index": {
-      "platform": "Stripe",
-      "name": "Stripe changelog (index)",
-      "url": "https://docs.stripe.com/changelog",
-      "kind": "changelog",
-      "signal": "field_default",
-      "ok": true,
-      "status": 200,
-      "etag": null,
-      "last_modified": null,
-      "title": "Changelog | Stripe Documentation",
-      "sha256": "d8f9f04b2a737c5d918d5d4877eec1535212007968792ab3107ca290c7548b2a",
-      "size": 3156320
-    },
-    "paypal-release-notes": {
+    "paypal-openapi": {
       "platform": "PayPal",
-      "name": "PayPal Orders API release notes",
-      "url": "https://developer.paypal.com/api/rest/release-notes/release-notes-orders.md",
-      "kind": "changelog",
+      "name": "REST API specifications",
+      "kind": "github_commits",
       "signal": "field_default",
       "ok": true,
-      "status": 200,
-      "etag": null,
-      "last_modified": null,
-      "title": null,
-      "sha256": "9a34b53edbd9910b33c6863d15747735b546d77a9c326840b4b3d06cd47b197e",
-      "size": 2097
+      "fingerprint": "90e8041ffe02d80c452d2b476bedd59a8d219bdc",
+      "detail": "90e8041f 2026-04-07T22:49:49Z | Update payments_payment_v2.json (#45)"
     },
-    "adyen-release-notes": {
+    "adyen-openapi": {
       "platform": "Adyen",
-      "name": "Adyen release notes",
-      "url": "https://docs.adyen.com/release-notes/",
-      "kind": "changelog",
+      "name": "OpenAPI spec",
+      "kind": "github_commits",
       "signal": "api_version",
       "ok": true,
-      "status": 200,
-      "etag": null,
-      "last_modified": "Tue, 22 Sep 2026 03:56:56 GMT",
-      "title": "Release notes | Adyen Docs",
-      "sha256": "36a3ff929ab1e5c37ffb9780645891a4ae213b5616dc0493c8bf5b140743efd0",
-      "size": 44774
+      "fingerprint": "da8325981e81e122d15036c36c00f395488d3131",
+      "detail": "da832598 2026-09-16T12:49:01Z | spec release"
+    },
+    "paypal-orders-release-notes": {
+      "platform": "PayPal",
+      "name": "Orders API release notes",
+      "kind": "http",
+      "signal": "field_default",
+      "ok": true,
+      "fingerprint": "9a34b53edbd9910b33c6863d15747735b546d77a9c326840b4b3d06cd47b197e",
+      "detail": "etag=None last-modified=None size=2111"
     }
   }
 }

@@ -1,39 +1,107 @@
 #!/usr/bin/env python3
-"""Fetch every source in sources.json and write a normalized snapshot.json."""
+"""Fetch every source in sources.json and write a stable-fingerprint snapshot.json."""
 
 import datetime
 import hashlib
 import json
 import os
 import re
-import sys
 import urllib.request
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-UA = "psp-drift-watch/0.1 (+https://github.com/PayIntLab)"
+UA = "psp-drift-watch/0.2 (+https://github.com/PayIntLab)"
 
 
-def fetch(url: str):
+def _get_json(url: str, accept=None):
+    headers = {"User-Agent": UA}
+    if accept:
+        headers["Accept"] = accept
+    req = urllib.request.Request(url, headers=headers)
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return json.loads(resp.read().decode("utf-8", "replace"))
+
+
+def _get_http(url: str):
     req = urllib.request.Request(url, headers={"User-Agent": UA})
     with urllib.request.urlopen(req, timeout=30) as resp:
         body = resp.read().decode("utf-8", "replace")
         info = resp.info()
-        return {
-            "status": resp.status,
+        return body, {
             "etag": info.get("ETag"),
             "last_modified": info.get("Last-Modified"),
-            "content_type": info.get("Content-Type"),
-            "body": body,
+            "status": resp.status,
         }
 
 
+_DYNAMIC_PATTERNS = [
+    re.compile(r"\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2})?"),
+    re.compile(r"\b\d{4}-\d{2}-\d{2}\b"),
+    re.compile(r"\b\d{2}:\d{2}:\d{2}\b"),
+    re.compile(r"\b\d+\s+(?:second|minute|hour|day|week|month|year)s?\s+ago\b", re.I),
+    re.compile(r"\b(?:just now|yesterday|today|ago)\b", re.I),
+    re.compile(r"\b[0-9a-f]{32,}\b", re.I),
+]
+
+
 def normalize(body: str) -> str:
-    return re.sub(r"\s+", " ", body).strip()
+    b = body
+    for p in _DYNAMIC_PATTERNS:
+        b = p.sub(" ", b)
+    return re.sub(r"\s+", " ", b).strip()
 
 
-def extract_title(body: str):
-    m = re.search(r"<title[^>]*>(.*?)</title>", body, re.I | re.S)
-    return re.sub(r"\s+", " ", m.group(1)).strip() if m else None
+def collect(s: dict) -> dict:
+    kind = s["kind"]
+    if kind == "github_commits":
+        q = "?per_page=1"
+        if s.get("path"):
+            q += f"&path={s['path']}"
+        data = _get_json(
+            f"https://api.github.com/repos/{s['repo']}/commits{q}",
+            "application/vnd.github+json",
+        )
+        if isinstance(data, list) and data:
+            c = data[0]
+            msg = c["commit"]["message"].split("\n")[0][:80]
+            return {
+                "ok": True,
+                "fingerprint": c["sha"],
+                "detail": f"{c['sha'][:8]} {c['commit']['committer']['date']} | {msg}",
+            }
+        return {"ok": False, "error": "no commits returned"}
+
+    if kind == "github_releases":
+        data = _get_json(
+            f"https://api.github.com/repos/{s['repo']}/releases/latest",
+            "application/vnd.github+json",
+        )
+        tag = data.get("tag_name")
+        if tag:
+            return {
+                "ok": True,
+                "fingerprint": tag,
+                "detail": f"{tag} ({data.get('published_at', '')})",
+            }
+        return {"ok": False, "error": "no latest release"}
+
+    if kind == "devto_api":
+        data = _get_json(f"https://dev.to/api/articles/{s['username']}/{s['slug']}")
+        return {
+            "ok": True,
+            "fingerprint": data.get("edited_at") or data.get("published_at"),
+            "detail": data.get("title", ""),
+        }
+
+    if kind == "http":
+        body, meta = _get_http(s["url"])
+        fp = meta.get("etag") or hashlib.sha256(normalize(body).encode("utf-8")).hexdigest()
+        return {
+            "ok": True,
+            "fingerprint": fp,
+            "detail": f"etag={meta.get('etag')} last-modified={meta.get('last_modified')} size={len(body)}",
+        }
+
+    return {"ok": False, "error": f"unknown kind: {kind}"}
 
 
 def main():
@@ -51,25 +119,12 @@ def main():
         entry = {
             "platform": s["platform"],
             "name": s["name"],
-            "url": s["url"],
             "kind": s["kind"],
             "signal": s["signal"],
         }
         try:
-            r = fetch(s["url"])
-            norm = normalize(r["body"])
-            entry.update(
-                {
-                    "ok": True,
-                    "status": r["status"],
-                    "etag": r["etag"],
-                    "last_modified": r["last_modified"],
-                    "title": extract_title(r["body"]),
-                    "sha256": hashlib.sha256(norm.encode("utf-8")).hexdigest(),
-                    "size": len(norm),
-                }
-            )
-        except Exception as e:  # noqa: BLE001 - record failure without aborting
+            entry.update(collect(s))
+        except Exception as e:  # noqa: BLE001
             entry.update({"ok": False, "error": f"{type(e).__name__}: {e}"})
         snapshot["sources"][s["id"]] = entry
 

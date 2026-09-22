@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-22T03:20:38.903043Z",
+  "generated_at": "2026-09-22T03:56:50.129103Z",
   "sources": {
     "paypal-orders-v1-v2-migration": {
       "platform": "PayPal",
@@ -12,8 +12,8 @@
       "etag": null,
       "last_modified": null,
       "title": "Orders API v1 → v2 integration upgrade guide | PayPal Developer",
-      "sha256": "0e1f1aa01e6cf055a7b718e887708428cf6b18d99180f44a17b7b54696ce1242",
-      "size": 753802
+      "sha256": "fb4d95566a18f7167cfb9ae7ab0e7711d99aa880d1838945d52f8ce124c635a6",
+      "size": 753224
     },
     "paypal-ipn-deprecation": {
       "platform": "PayPal",
@@ -39,9 +39,9 @@
       "status": 200,
       "etag": null,
       "last_modified": null,
-      "title": "サブスクリプション項目の billed until プロパティは、デフォルトではレスポンスに含まれなくなりました | Stripe ドキュメント",
-      "sha256": "71a41b03e985daf66f406e1bedd83295d2ed02ade2e4dd31efe2b90a5da74b1e",
-      "size": 939618
+      "title": "Billed until property on subscription items is no longer included in responses by default | Stripe Documentation",
+      "sha256": "b5119035840e5c90682bd4232fff4f5211478659590994ec51f912c3a8dda86f",
+      "size": 675094
     },
     "stripe-node-21-release": {
       "platform": "Stripe",
@@ -68,8 +68,8 @@
       "etag": null,
       "last_modified": null,
       "title": "⚠️ Throw an error when using the wrong webhook parsing method by xavdid-stripe · Pull Request #2616 · stripe/stripe-node · GitHub",
-      "sha256": "ba8128e0146e4cfa585ce14399fbee997def6d9d25b305fd72ea797bf809da4e",
-      "size": 316822
+      "sha256": "39509f44e2c72b6eee242e605ff2bbfea5ae3031cf452bf079ee10167110c42b",
+      "size": 316813
     },
     "adyen-checkout-v72": {
       "platform": "Adyen",
@@ -82,7 +82,7 @@
       "etag": null,
       "last_modified": null,
       "title": "Upgrade to Checkout v72 for more reliable payment flows - Adyen",
-      "sha256": "5c4562e7fb651b1f9d5619c76faa373aeb1f431db5a68091b9517d4b828ef69e",
+      "sha256": "f40585728f361646aef80b8ef9eccd628dfeb3d54c28569491f4d4658e0f1d5d",
       "size": 1077758
     },
     "stripe-changelog-index": {
@@ -95,9 +95,9 @@
       "status": 200,
       "etag": null,
       "last_modified": null,
-      "title": "変更ログ | Stripe ドキュメント",
-      "sha256": "ef6fa356734882c6a639a077bf34cf91d421456d609994cda47d95995c758ae0",
-      "size": 3400793
+      "title": "Changelog | Stripe Documentation",
+      "sha256": "d8f9f04b2a737c5d918d5d4877eec1535212007968792ab3107ca290c7548b2a",
+      "size": 3156320
     },
     "paypal-release-notes": {
       "platform": "PayPal",
@@ -122,9 +122,9 @@
       "ok": true,
       "status": 200,
       "etag": null,
-      "last_modified": "Tue, 22 Sep 2026 03:19:39 GMT",
+      "last_modified": "Tue, 22 Sep 2026 03:56:56 GMT",
       "title": "Release notes | Adyen Docs",
-      "sha256": "d947873ead52afb3bf04cbc1d4926f5e6ae21fa50b2548b2f597ff3a87f09a0c",
+      "sha256": "36a3ff929ab1e5c37ffb9780645891a4ae213b5616dc0493c8bf5b140743efd0",
       "size": 44774
     }
   }

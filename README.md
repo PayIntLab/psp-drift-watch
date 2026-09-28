@@ -41,6 +41,15 @@ cp snapshot.json baseline.json   # 固化当前状态为基线
 
 报告输出到 `drift-report.md`，列出：新增/变化/失败/未变化的源，以及升级前回归清单。
 
+## GitHub 定时监测
+
+定时 workflow 在发现漂移时不会每天新建 issue，而是维护一个
+`PSP drift watch (rolling)` 滚动 issue：
+
+- 有新漂移时更新该 issue，而不是创建重复 issue
+- 旧的 `PSP drift: YYYY-MM-DD` 日报会自动关闭并指向滚动 issue
+- 没有新漂移时不重复更新，避免每天产生通知
+
 ## 三条判断信号
 
 | 信号 | 含义 | 例子 |

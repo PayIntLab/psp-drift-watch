@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: '0 1 * * *'   # 每天 01:00 UTC（北京时间 09:00）
   workflow_dispatch: {}
+  push:
+    paths:
+      - '.github/workflows/drift-watch.yml'
 
 permissions:
   contents: write
@@ -31,20 +34,77 @@ jobs:
           HAS_DRIFT=$(python3 -c "import json;d=json.load(open('drift-result.json'));print('true' if d['changed']+d['new']>0 else 'false')")
           echo "has_drift=$HAS_DRIFT" >> "$GITHUB_OUTPUT"
 
-      - name: Create drift issue
-        if: steps.check.outputs.has_drift == 'true'
+      - name: Create or update rolling drift issue
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
             const body = fs.readFileSync('drift-report.md', 'utf8');
-            const title = 'PSP drift: ' + new Date().toISOString().slice(0, 10);
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title,
-              body
-            });
+            const hasDrift = '${{ steps.check.outputs.has_drift }}' === 'true';
+            const rollingTitle = 'PSP drift watch (rolling)';
+            const rollingMarker = '<!-- psp-drift-watch:rolling -->';
+            const rollingBody = `${rollingMarker}\n\n${body}`;
+            const legacyPattern = /^PSP drift: \d{4}-\d{2}-\d{2}$/;
+
+            const openIssues = [];
+            let page = 1;
+            while (true) {
+              const { data } = await github.rest.issues.listForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'open',
+                per_page: 100,
+                page,
+              });
+              openIssues.push(...data.filter((issue) => !issue.pull_request));
+              if (data.length < 100) break;
+              page += 1;
+            }
+
+            let rolling = openIssues.find(
+              (issue) =>
+                issue.title === rollingTitle ||
+                (issue.body || '').includes(rollingMarker)
+            );
+
+            if (!rolling) {
+              const { data } = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: rollingTitle,
+                body: rollingBody,
+              });
+              rolling = data;
+            } else if (hasDrift) {
+              const { data } = await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: rolling.number,
+                title: rollingTitle,
+                body: rollingBody,
+              });
+              rolling = data;
+            }
+
+            for (const issue of openIssues) {
+              if (issue.number === rolling.number || !legacyPattern.test(issue.title)) {
+                continue;
+              }
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `Consolidated into the rolling drift issue #${rolling.number}. Closing this daily duplicate.`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed',
+                state_reason: 'not_planned',
+              });
+            }
 
       - name: Update baseline
         if: steps.check.outputs.has_drift == 'true'

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T06:41:05.105866Z",
+  "generated_at": "2026-09-30T06:26:56.005101Z",
   "sources": {
     "stripe-openapi": {
       "platform": "Stripe",
@@ -7,8 +7,8 @@
       "kind": "github_commits",
       "signal": "field_default",
       "ok": true,
-      "fingerprint": "db67eb25e0ca80f12ffffb8f04dc1ba8289cd10f",
-      "detail": "db67eb25 2026-09-28T17:16:25Z | Fix stripe-mock workspace paths on Linux (#202)"
+      "fingerprint": "ce576d4f145edeef361a64d9d51b2153e3696b0b",
+      "detail": "ce576d4f 2026-09-30T00:29:01Z | Update upcoming changes"
     },
     "stripe-node-release": {
       "platform": "Stripe",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T06:26:56.005101Z",
+  "generated_at": "2026-10-01T07:00:35.495022Z",
   "sources": {
     "stripe-openapi": {
       "platform": "Stripe",
@@ -16,8 +16,8 @@
       "kind": "github_releases",
       "signal": "sdk_version",
       "ok": true,
-      "fingerprint": "v22.6.2",
-      "detail": "v22.6.2 (2026-09-09T21:10:28Z)"
+      "fingerprint": "v23.0.0",
+      "detail": "v23.0.0 (2026-10-01T00:45:42Z)"
     },
     "paypal-openapi": {
       "platform": "PayPal",

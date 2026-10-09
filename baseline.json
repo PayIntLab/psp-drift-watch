@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T07:08:35.796282Z",
+  "generated_at": "2026-10-09T07:13:51.842344Z",
   "sources": {
     "stripe-openapi": {
       "platform": "Stripe",
@@ -7,8 +7,8 @@
       "kind": "github_commits",
       "signal": "field_default",
       "ok": true,
-      "fingerprint": "e79d0391159a5b8a891a2bab9411052d37f9952c",
-      "detail": "e79d0391 2026-10-08T05:57:38Z | Update OpenAPI specification for private preview"
+      "fingerprint": "28618869a15130f2def39700b313735d6ba5fc65",
+      "detail": "28618869 2026-10-08T22:08:57Z | Update OpenAPI specification for private preview"
     },
     "stripe-node-release": {
       "platform": "Stripe",

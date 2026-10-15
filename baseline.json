@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-13T07:30:53.362416Z",
+  "generated_at": "2026-10-15T05:41:44.208785Z",
   "sources": {
     "stripe-openapi": {
       "platform": "Stripe",
@@ -7,8 +7,8 @@
       "kind": "github_commits",
       "signal": "field_default",
       "ok": true,
-      "fingerprint": "e73367dba9e88388c9244de65874fd3a07cb1b4d",
-      "detail": "e73367db 2026-10-12T23:02:54Z | [RUN_DEVSDK-3092] Stop the v1 workflow from publishing upcoming changes (#203)"
+      "fingerprint": "c91c9e663d896d27655b8c8a37952d29581b0afe",
+      "detail": "c91c9e66 2026-10-15T03:32:35Z | Update OpenAPI specification for private preview"
     },
     "stripe-node-release": {
       "platform": "Stripe",
@@ -43,8 +43,8 @@
       "kind": "http",
       "signal": "field_default",
       "ok": true,
-      "fingerprint": "9a34b53edbd9910b33c6863d15747735b546d77a9c326840b4b3d06cd47b197e",
-      "detail": "etag=None last-modified=None size=2111"
+      "fingerprint": "540a3cf77e7ffcf916122e5a266817db5dc627a07c503ee301474923f57e4d8d",
+      "detail": "etag=None last-modified=None size=2148"
     }
   }
 }

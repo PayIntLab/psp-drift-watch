@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T05:52:02.294325Z",
+  "generated_at": "2026-10-23T05:50:25.607389Z",
   "sources": {
     "stripe-openapi": {
       "platform": "Stripe",
@@ -7,8 +7,8 @@
       "kind": "github_commits",
       "signal": "field_default",
       "ok": true,
-      "fingerprint": "b339867409bf2fb41b6c3411804de1ec4ebf6a49",
-      "detail": "b3398674 2026-10-21T18:29:44Z | Update OpenAPI specification for private preview"
+      "fingerprint": "90539938d9aad57955213f39ffbb23312ddbb6c8",
+      "detail": "90539938 2026-10-22T22:02:34Z | Update OpenAPI specification for private preview"
     },
     "stripe-node-release": {
       "platform": "Stripe",
@@ -16,8 +16,8 @@
       "kind": "github_releases",
       "signal": "sdk_version",
       "ok": true,
-      "fingerprint": "v23.0.0",
-      "detail": "v23.0.0 (2026-10-01T00:45:42Z)"
+      "fingerprint": "v23.0.1",
+      "detail": "v23.0.1 (2026-10-22T18:06:33Z)"
     },
     "paypal-openapi": {
       "platform": "PayPal",
@@ -34,8 +34,8 @@
       "kind": "github_commits",
       "signal": "api_version",
       "ok": true,
-      "fingerprint": "507d6674c61622c61990f2f3b3ec4038a191d10c",
-      "detail": "507d6674 2026-10-21T10:03:16Z | spec release"
+      "fingerprint": "2c1f3ab1e0385815899db9364a95e5aa5cf5568a",
+      "detail": "2c1f3ab1 2026-10-22T14:17:21Z | spec release"
     },
     "paypal-orders-release-notes": {
       "platform": "PayPal",

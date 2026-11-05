@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T07:21:48.374088Z",
+  "generated_at": "2026-11-05T07:47:43.085509Z",
   "sources": {
     "stripe-openapi": {
       "platform": "Stripe",
@@ -7,8 +7,8 @@
       "kind": "github_commits",
       "signal": "field_default",
       "ok": true,
-      "fingerprint": "b213739d4879835a5af50f15daaa3a41ae267985",
-      "detail": "b213739d 2026-11-03T22:49:41Z | Update ga-and-public-preview OpenAPI canary for development"
+      "fingerprint": "3376b56a42f68e2b0a8ba5e9aad7cd4cbe8d2ae2",
+      "detail": "3376b56a 2026-11-04T19:02:26Z | Update OpenAPI specification for private preview"
     },
     "stripe-node-release": {
       "platform": "Stripe",
@@ -34,8 +34,8 @@
       "kind": "github_commits",
       "signal": "api_version",
       "ok": true,
-      "fingerprint": "2dd3de9948f4fbb842690b4dc90cf624edcaae5a",
-      "detail": "2dd3de99 2026-11-02T14:27:22Z | spec release"
+      "fingerprint": "638b69a7b3757c5f823f5fbd08a4d7074b968a74",
+      "detail": "638b69a7 2026-11-04T15:12:06Z | spec release"
     },
     "paypal-orders-release-notes": {
       "platform": "PayPal",

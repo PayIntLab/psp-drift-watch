@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-11T07:36:39.948224Z",
+  "generated_at": "2026-11-13T07:41:22.247452Z",
   "sources": {
     "stripe-openapi": {
       "platform": "Stripe",
@@ -7,8 +7,8 @@
       "kind": "github_commits",
       "signal": "field_default",
       "ok": true,
-      "fingerprint": "6763e1a3f199026b0893cf190d95130d3700c045",
-      "detail": "6763e1a3 2026-11-10T19:25:17Z | Update OpenAPI specification for private preview"
+      "fingerprint": "a045100cf4af0acb548cb9c6f236bb117f83458f",
+      "detail": "a045100c 2026-11-12T22:04:05Z | Update all OpenAPI canary for development"
     },
     "stripe-node-release": {
       "platform": "Stripe",
@@ -33,9 +33,8 @@
       "name": "OpenAPI spec",
       "kind": "github_commits",
       "signal": "api_version",
-      "ok": true,
-      "fingerprint": "d449f090b9a4842b63b562cd057fe12dfbf4bcad",
-      "detail": "d449f090 2026-11-09T15:32:49Z | spec release"
+      "ok": false,
+      "error": "HTTPError: HTTP Error 422: Unprocessable Entity"
     },
     "paypal-orders-release-notes": {
       "platform": "PayPal",

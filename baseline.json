@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T08:20:12.218653Z",
+  "generated_at": "2026-11-19T08:32:08.885477Z",
   "sources": {
     "stripe-openapi": {
       "platform": "Stripe",
@@ -7,32 +7,35 @@
       "kind": "github_commits",
       "signal": "field_default",
       "ok": true,
-      "fingerprint": "ed463ff0873e207ec317de52bf483aa94929144e",
-      "detail": "ed463ff0 2026-11-17T22:29:37Z | Update OpenAPI specification for GA and public preview"
+      "fingerprint": "ba85253e4a8afb454d69bde37525b359cc0d1553",
+      "detail": "ba85253e 2026-11-18T19:21:45Z | Update OpenAPI specification for private preview"
     },
     "stripe-node-release": {
       "platform": "Stripe",
       "name": "stripe-node SDK release",
       "kind": "github_releases",
       "signal": "sdk_version",
-      "ok": false,
-      "error": "HTTPError: HTTP Error 403: rate limit exceeded"
+      "ok": true,
+      "fingerprint": "v23.2.0",
+      "detail": "v23.2.0 (2026-11-19T03:46:48Z)"
     },
     "paypal-openapi": {
       "platform": "PayPal",
       "name": "REST API specifications",
       "kind": "github_commits",
       "signal": "field_default",
-      "ok": false,
-      "error": "HTTPError: HTTP Error 403: rate limit exceeded"
+      "ok": true,
+      "fingerprint": "90e8041ffe02d80c452d2b476bedd59a8d219bdc",
+      "detail": "90e8041f 2026-04-07T22:49:49Z | Update payments_payment_v2.json (#45)"
     },
     "adyen-openapi": {
       "platform": "Adyen",
       "name": "OpenAPI spec",
       "kind": "github_commits",
       "signal": "api_version",
-      "ok": false,
-      "error": "HTTPError: HTTP Error 403: rate limit exceeded"
+      "ok": true,
+      "fingerprint": "63f87f80250b7c5c0f006fbb123fb49c9e84a93b",
+      "detail": "63f87f80 2026-11-18T10:21:33Z | spec release"
     },
     "paypal-orders-release-notes": {
       "platform": "PayPal",

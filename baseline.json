@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-20T08:14:10.714365Z",
+  "generated_at": "2026-11-21T08:06:24.840547Z",
   "sources": {
     "stripe-openapi": {
       "platform": "Stripe",
@@ -7,8 +7,8 @@
       "kind": "github_commits",
       "signal": "field_default",
       "ok": true,
-      "fingerprint": "fae26264636d2d322b175ce01f6d09358078a466",
-      "detail": "fae26264 2026-11-19T22:04:01Z | Update all OpenAPI canary for development"
+      "fingerprint": "2dcbcfb9baa2535e672cdd2a0b579cbb940ab4b4",
+      "detail": "2dcbcfb9 2026-11-20T22:03:57Z | Update all OpenAPI canary for development"
     },
     "stripe-node-release": {
       "platform": "Stripe",

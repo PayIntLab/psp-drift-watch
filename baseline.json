@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T10:44:33.880038Z",
+  "generated_at": "2026-11-25T09:40:35.627590Z",
   "sources": {
     "stripe-openapi": {
       "platform": "Stripe",
@@ -34,8 +34,8 @@
       "kind": "github_commits",
       "signal": "api_version",
       "ok": true,
-      "fingerprint": "63f87f80250b7c5c0f006fbb123fb49c9e84a93b",
-      "detail": "63f87f80 2026-11-18T10:21:33Z | spec release"
+      "fingerprint": "7280e1fdc07c5a2464fe0b268f893df8afaa410c",
+      "detail": "7280e1fd 2026-11-25T08:14:30Z | spec release"
     },
     "paypal-orders-release-notes": {
       "platform": "PayPal",
